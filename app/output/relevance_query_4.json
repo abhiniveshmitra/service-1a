@@ -1,0 +1,107 @@
+{
+    "query_id": "query_4",
+    "job_role": "Digital Transformation Consultant",
+    "search_query": "digital library implementation and governance structure",
+    "results": [
+        {
+            "document": "E0H1CM114.pdf",
+            "total_sections": 53,
+            "top_matches": [
+                {
+                    "section": {
+                        "level": "H2",
+                        "text": "Digital Library",
+                        "page": 1
+                    },
+                    "relevance_score": 0.6882,
+                    "rank": 1
+                },
+                {
+                    "section": {
+                        "level": "H3",
+                        "text": "Ontario’s Digital Library",
+                        "page": 2
+                    },
+                    "relevance_score": 0.5811,
+                    "rank": 2
+                },
+                {
+                    "section": {
+                        "level": "H4",
+                        "text": "Shared governance structure:",
+                        "page": 4
+                    },
+                    "relevance_score": 0.4696,
+                    "rank": 3
+                },
+                {
+                    "section": {
+                        "level": "H4",
+                        "text": "Ontario’s Libraries",
+                        "page": 1
+                    },
+                    "relevance_score": 0.4528,
+                    "rank": 4
+                },
+                {
+                    "section": {
+                        "level": "H4",
+                        "text": "For each Ontario library it could mean:",
+                        "page": 6
+                    },
+                    "relevance_score": 0.3345,
+                    "rank": 5
+                },
+                {
+                    "section": {
+                        "level": "H2",
+                        "text": "9. Financial and Administrative Policies",
+                        "page": 13
+                    },
+                    "relevance_score": 0.2916,
+                    "rank": 6
+                },
+                {
+                    "section": {
+                        "level": "H2",
+                        "text": "8. Lines of Accountability and Communication",
+                        "page": 12
+                    },
+                    "relevance_score": 0.2654,
+                    "rank": 7
+                },
+                {
+                    "section": {
+                        "level": "H4",
+                        "text": "Appendix A:  ODL Envisioned Phases & Funding",
+                        "page": 9
+                    },
+                    "relevance_score": 0.2573,
+                    "rank": 8
+                },
+                {
+                    "section": {
+                        "level": "H2",
+                        "text": "8.3 The Steering Committee is accountable to its constituent groups and other stakeholders for",
+                        "page": 13
+                    },
+                    "relevance_score": 0.2323,
+                    "rank": 9
+                },
+                {
+                    "section": {
+                        "level": "H4",
+                        "text": "OVERVIEW OF ODL FUNDING MODEL",
+                        "page": 10
+                    },
+                    "relevance_score": 0.228,
+                    "rank": 10
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "total_documents": 1,
+        "processing_time": "calculated_at_runtime"
+    }
+}

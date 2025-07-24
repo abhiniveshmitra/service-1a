@@ -1,0 +1,57 @@
+{
+  "query_1": {
+    "id": "query_1",
+    "job_role": "Software Engineer",
+    "query": "agile testing methodologies and technical implementation",
+    "documents": [
+      {
+        "name": "E0CCG5S312.pdf",
+        "outline_file": "E0CCG5S312_outline.json"
+      }
+    ]
+  },
+  "query_2": {
+    "id": "query_2",
+    "job_role": "Quality Assurance Engineer",
+    "query": "foundation level testing certification and syllabus requirements",
+    "documents": [
+      {
+        "name": "E0CCG5S312.pdf",
+        "outline_file": "E0CCG5S312_outline.json"
+      }
+    ]
+  },
+  "query_3": {
+    "id": "query_3",
+    "job_role": "Product Manager",
+    "query": "business plan development and stakeholder requirements",
+    "documents": [
+      {
+        "name": "E0H1CM114.pdf",
+        "outline_file": "E0H1CM114_outline.json"
+      }
+    ]
+  },
+  "query_4": {
+    "id": "query_4",
+    "job_role": "Digital Transformation Consultant",
+    "query": "digital library implementation and governance structure",
+    "documents": [
+      {
+        "name": "E0H1CM114.pdf",
+        "outline_file": "E0H1CM114_outline.json"
+      }
+    ]
+  },
+  "query_5": {
+    "id": "query_5",
+    "job_role": "Education Administrator",
+    "query": "STEM curriculum pathway options and student requirements",
+    "documents": [
+      {
+        "name": "STEMPathwaysFlyer.pdf",
+        "outline_file": "STEMPathwaysFlyer_outline.json"
+      }
+    ]
+  }
+}

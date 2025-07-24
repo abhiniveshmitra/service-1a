@@ -1,0 +1,107 @@
+{
+    "query_id": "query_3",
+    "job_role": "Product Manager",
+    "search_query": "business plan development and stakeholder requirements",
+    "results": [
+        {
+            "document": "E0H1CM114.pdf",
+            "total_sections": 53,
+            "top_matches": [
+                {
+                    "section": {
+                        "level": "H2",
+                        "text": "To Present a Proposal for Developing",
+                        "page": 1
+                    },
+                    "relevance_score": 0.5181,
+                    "rank": 1
+                },
+                {
+                    "section": {
+                        "level": "H2",
+                        "text": "the Business Plan for the Ontario",
+                        "page": 1
+                    },
+                    "relevance_score": 0.5114,
+                    "rank": 2
+                },
+                {
+                    "section": {
+                        "level": "H4",
+                        "text": "Approach and Specific Proposal Requirements",
+                        "page": 7
+                    },
+                    "relevance_score": 0.4764,
+                    "rank": 3
+                },
+                {
+                    "section": {
+                        "level": "H2",
+                        "text": "8.1 The Steering Committee is accountable to the Province of Ontario, and to its business plan",
+                        "page": 12
+                    },
+                    "relevance_score": 0.3434,
+                    "rank": 4
+                },
+                {
+                    "section": {
+                        "level": "H4",
+                        "text": "Appendix A:  ODL Envisioned Phases & Funding",
+                        "page": 9
+                    },
+                    "relevance_score": 0.3276,
+                    "rank": 5
+                },
+                {
+                    "section": {
+                        "level": "H4",
+                        "text": "Guidance and Advice:",
+                        "page": 5
+                    },
+                    "relevance_score": 0.2772,
+                    "rank": 6
+                },
+                {
+                    "section": {
+                        "level": "H4",
+                        "text": "Shared governance structure:",
+                        "page": 4
+                    },
+                    "relevance_score": 0.2728,
+                    "rank": 7
+                },
+                {
+                    "section": {
+                        "level": "H4",
+                        "text": "Prosperity Strategy",
+                        "page": 2
+                    },
+                    "relevance_score": 0.266,
+                    "rank": 8
+                },
+                {
+                    "section": {
+                        "level": "H2",
+                        "text": "8.3 The Steering Committee is accountable to its constituent groups and other stakeholders for",
+                        "page": 13
+                    },
+                    "relevance_score": 0.2553,
+                    "rank": 9
+                },
+                {
+                    "section": {
+                        "level": "H2",
+                        "text": "4. Appointment Criteria and Process",
+                        "page": 12
+                    },
+                    "relevance_score": 0.2478,
+                    "rank": 10
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "total_documents": 1,
+        "processing_time": "calculated_at_runtime"
+    }
+}

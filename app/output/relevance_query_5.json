@@ -1,0 +1,107 @@
+{
+    "query_id": "query_5",
+    "job_role": "Education Administrator",
+    "search_query": "STEM curriculum pathway options and student requirements",
+    "results": [
+        {
+            "document": "STEMPathwaysFlyer.pdf",
+            "total_sections": 20,
+            "top_matches": [
+                {
+                    "section": {
+                        "level": "H4",
+                        "text": "STEM Pathways set PTHSD students apart when applying",
+                        "page": 2
+                    },
+                    "relevance_score": 0.5381,
+                    "rank": 1
+                },
+                {
+                    "section": {
+                        "level": "H3",
+                        "text": "PATHWAY OPTIONS",
+                        "page": 1
+                    },
+                    "relevance_score": 0.4599,
+                    "rank": 2
+                },
+                {
+                    "section": {
+                        "level": "H4",
+                        "text": "DISTINCTION PATHWAY",
+                        "page": 1
+                    },
+                    "relevance_score": 0.3749,
+                    "rank": 3
+                },
+                {
+                    "section": {
+                        "level": "H1",
+                        "text": "Parsippany -Troy Hills STEM Pathways",
+                        "page": 1
+                    },
+                    "relevance_score": 0.368,
+                    "rank": 4
+                },
+                {
+                    "section": {
+                        "level": "H2",
+                        "text": "Elective Course Offerings",
+                        "page": 2
+                    },
+                    "relevance_score": 0.3445,
+                    "rank": 5
+                },
+                {
+                    "section": {
+                        "level": "H4",
+                        "text": "Towson University: “Participation in this program would",
+                        "page": 2
+                    },
+                    "relevance_score": 0.3182,
+                    "rank": 6
+                },
+                {
+                    "section": {
+                        "level": "H3",
+                        "text": "What Colleges Say!",
+                        "page": 2
+                    },
+                    "relevance_score": 0.247,
+                    "rank": 7
+                },
+                {
+                    "section": {
+                        "level": "H4",
+                        "text": "REGULAR PATHWAY",
+                        "page": 1
+                    },
+                    "relevance_score": 0.2293,
+                    "rank": 8
+                },
+                {
+                    "section": {
+                        "level": "H4",
+                        "text": "Science and Other",
+                        "page": 2
+                    },
+                    "relevance_score": 0.2085,
+                    "rank": 9
+                },
+                {
+                    "section": {
+                        "level": "H4",
+                        "text": "Seminar and",
+                        "page": 2
+                    },
+                    "relevance_score": 0.1528,
+                    "rank": 10
+                }
+            ]
+        }
+    ],
+    "metadata": {
+        "total_documents": 1,
+        "processing_time": "calculated_at_runtime"
+    }
+}

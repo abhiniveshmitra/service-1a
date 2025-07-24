@@ -1,0 +1,29 @@
+﻿version: '3.8'
+
+services:
+  adobe-hackathon:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: adobe-pdf-processor
+    environment:
+      - ROUND=1A
+    volumes:
+      - ./app/input:/app/input:ro
+      - ./app/output:/app/output
+      - ./collections:/app/collections
+    restart: unless-stopped
+    
+  # Round 1B service
+  adobe-hackathon-1b:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: adobe-challenge-1b
+    environment:
+      - ROUND=1B
+    volumes:
+      - ./collections:/app/collections
+    restart: unless-stopped
+    depends_on:
+      - adobe-hackathon
