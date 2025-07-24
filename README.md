@@ -18,6 +18,21 @@ This repository is the official submission for the Adobe India Hackathon 2025, u
 * **Multi-Collection Support:** Processes multiple collections independently and in parallel, as per Adobe’s folder specification.
 * **100% Compliance:** All outputs pass official JSON schema validation, with health checks and validation scripts included.
 
+## 🗂️ Where to Add PDFs for Testing
+
+* Place your sample or test PDF files inside the `app/input/` folder. Each PDF placed here will be processed in **Round 1A** for outline extraction.
+* After processing, extracted outlines and intermediate outputs are stored in `app/output/`.
+
+For Challenge 1B, collections are managed under `collections/`, with each collection having its own PDFs, outline dependencies, and input/output JSON files as per the official hackathon folder specification.
+
+## 🔄 End-to-End Pipeline Flow
+
+1. **Place PDFs:** Add your PDFs to `app/input/` for outline extraction (Round 1A).
+2. **Run Round 1A:** Extracts structured outlines (as JSON) for each PDF.
+3. **Setup Collections:** Converts Round 1A outputs for use in persona-driven analysis (populates `collections/` folders).
+4. **Run Round 1B:** Performs persona-specific content extraction and ranking for each collection, producing schema-compliant outputs.
+5. **Validation:** Run health checks and schema validation to ensure outputs are compliant.
+
 ## 📋 Quick Start
 
 ### Prerequisites
@@ -79,14 +94,10 @@ docker run --rm --platform=linux/amd64 \
 ```
 adobe-hackathon-pipeline/
 ├── app/
-│   ├── main.py
-│   ├── config/
-│   ├── services/
-│   ├── utils/
-│   ├── input/
-│   ├── output/
-│   └── models/
-├── collections/
+│   ├── input/               # Place PDFs here for Round 1A
+│   ├── output/              # Round 1A JSON outputs
+│   └── ...
+├── collections/             # Multi-collection folders for Round 1B
 │   ├── Collection 1/
 │   ├── Collection 2/
 ├── scripts/
