@@ -1,29 +1,68 @@
-# Adobe India Hackathon 2025 – Service 1A: PDF Outline Extraction
+# Adobe India Hackathon 2025 – Service 1A
+
+PDF Outline Extraction with Advanced Heading Detection
+
+## 🧑‍💻 TEAM INFORMATION
+
+**Team Name:** Stairway to Compilation
+**Team Members:**
+
+* Abhinivesh Mitra – [f20221311@hyderabad.bits-pilani.ac.in](mailto:f20221311@hyderabad.bits-pilani.ac.in)
+* Rishit Raj – [f20220431@hyderabad.bits-pilani.ac.in](mailto:f20220431@hyderabad.bits-pilani.ac.in)
+* Paarth Prakash – [f20220558@hyderabad.bits-pilani.ac.in](mailto:f20220558@hyderabad.bits-pilani.ac.in)
+
+**Institution:** BITS Pilani, Hyderabad Campus
+**Hackathon:** Adobe India Hackathon 2025 – Service 1A
+**Submission Date:** July 28, 2025
+**Contact:** [f20221311@hyderabad.bits-pilani.ac.in](mailto:f20221311@hyderabad.bits-pilani.ac.in)
+
+---
+
+## 💡 CHALLENGE STATEMENT
+
+**Challenge:** PDF Outline Extraction
+
+* **Problem:** Transform static PDF documents into structured, hierarchical outlines by intelligently detecting titles and heading levels (H1-H6) with precise page references, enabling downstream document analysis and navigation.
+* **Solution Approach:** Multi-factor heading detection algorithm combining font analysis, formatting patterns, positional heuristics, and semantic understanding to achieve superior outline extraction accuracy.
+
+---
+
+## ✨ INNOVATION HIGHLIGHTS
+
+* **Multi-Factor Scoring Algorithm:** 5-dimensional heading detection (font size 35%, formatting 25%, patterns 25%, vocabulary 10%, position 5%)
+* **Intelligent Hierarchy Assignment:** Dynamic level detection using font ratios and numbering patterns
+* **Error-Resilient Processing:** Fault-tolerant batch processing that continues despite individual PDF failures
+* **Performance Excellence:** 2–5s processing time (50–80% faster than 10s requirement)
+* **Zero-Dependency Architecture:** Completely offline processing with no external API calls
+* **Advanced Pattern Recognition:** Supports multiple numbering systems (1., 1.1, I., A., etc.)
+
+---
 
 ## 🚀 OVERVIEW
 
-Official submission for Service 1A of Adobe India Hackathon 2025. This system extracts hierarchical outlines from PDF documents, identifying titles and H1–H6 headings, and outputs a schema-compliant JSON.
+Official submission for Service 1A of Adobe India Hackathon 2025. This system extracts hierarchical outlines from PDF documents using advanced multi-factor analysis, identifying titles and H1–H6 headings with precise page references, and outputs schema-compliant JSON for seamless integration with downstream systems.
 
 ---
 
 ## 📄 WHAT IT DOES
 
-* Extracts structured outlines from static PDFs
-* Detects heading levels (H1-H6) and their page numbers
-* Transforms results into JSON format for downstream use
-* Processes files under 10s with CPU-only execution
-* Fully offline and self-contained
+* Extracts structured outlines from static PDFs using intelligent heading detection
+* Detects heading levels (H1-H6) with page numbers using multi-factor scoring
+* Transforms results into schema-compliant JSON format (filename.json)
+* Processes files under 10 seconds with CPU-only execution
+* Handles batch processing with error resilience
+* Fully offline and self-contained with embedded dependencies
 
 ---
 
 ## 🔹 KEY FEATURES
 
-* **Multi-Factor Heading Detection**: Font size ratios, formatting flags, layout, regex
-* **Hierarchy Recognition**: Auto H1-H6 assignment via font and numbering
-* **Fast Execution**: 2–5s typical per PDF (50-page max)
-* **Schema Compliance**: 100% JSON validation
-* **Error Resilience**: Skips failing files, continues batch
-* **Dockerized**: linux/amd64 container-ready
+* **Multi-Factor Heading Detection:** Font size ratios, formatting flags, layout analysis, regex patterns, vocabulary detection
+* **Intelligent Hierarchy Recognition:** Automatic H1–H6 assignment via font analysis and numbering systems
+* **Lightning-Fast Execution:** 2–5 seconds typical per PDF (50-page maximum)
+* **Schema Compliance:** 100% JSON validation against hackathon specifications
+* **Error Resilience:** Skips failing files, continues batch processing
+* **Dockerized Deployment:** Complete linux/amd64 container with all dependencies
 
 ---
 
@@ -32,56 +71,81 @@ Official submission for Service 1A of Adobe India Hackathon 2025. This system ex
 ```
 service-1a/
 ├── app/
-│   ├── config/            # Service config
-│   ├── input/             # Input PDFs
-│   ├── output/            # Output JSONs
-│   ├── services/round1a/  # Core logic
-│   └── utils/             # Validation/log helpers
-├── Dockerfile
-├── docker-compose.yml
-├── requirements.txt
-└── README.md
+│   ├── main.py                 # Service 1A entry point
+│   ├── config/
+│   │   └── settings.py         # Configuration management
+│   ├── input/                  # PDF input directory
+│   ├── output/                 # JSON output directory
+│   ├── services/round1a/
+│   │   ├── outline_extractor.py    # Main extraction logic
+│   │   ├── heading_detector.py     # Multi-factor heading detection
+│   │   └── pdf_parser.py           # PDF text and metadata extraction
+│   └── utils/
+│       ├── file_handler.py         # File I/O operations
+│       ├── json_validator.py       # Schema validation
+│       └── logger.py               # Logging utilities
+├── Dockerfile                  # Container configuration
+├── docker-compose.yml          # Service orchestration
+├── requirements.txt            # Python dependencies
+└── README.md                   # This documentation
 ```
 
 ---
 
-## 🔧 INPUT REQUIREMENTS
+## 📥 INPUT REQUIREMENTS
 
-* Place `.pdf` files in `/app/input/`
-* ≤ 50 pages per PDF
-* Valid text-based PDFs
-* Naming: Any `.pdf` extension
+* Place PDF files in app/input/ directory
+* Maximum 50 pages per PDF (hackathon constraint)
+* Standard PDF format with readable text content
+* File naming: Any valid filename with .pdf extension
+* Multiple PDFs supported for batch processing
 
 ---
 
-## 🔄 OUTPUT FORMAT (filename.json)
+## 📤 OUTPUT FORMAT (filename.json)
+
+For each input PDF (e.g., document.pdf), generates document.json:
 
 ```json
 {
-  "title": "Document Title Extracted from PDF",
+  "title": "Document Title Extracted from First Page",
   "outline": [
-    {"level": "H1", "text": "Chapter 1: Introduction", "page": 1},
-    {"level": "H2", "text": "1.1 Background and Context", "page": 2},
-    {"level": "H3", "text": "1.1.1 Problem Statement", "page": 3}
+    {
+      "level": "H1",
+      "text": "Chapter 1: Introduction to PDF Processing",
+      "page": 1
+    },
+    {
+      "level": "H2",
+      "text": "1.1 Background and Context",
+      "page": 2
+    },
+    {
+      "level": "H3",
+      "text": "1.1.1 Problem Statement and Objectives",
+      "page": 3
+    }
   ]
 }
 ```
 
-* `title`: First-page extracted title
-* `outline`: Hierarchical heading structure
-* `page`: 1-based indexing
+* `title`: Extracted document title from first page using font analysis
+* `outline`: Array of heading objects with hierarchical structure
+* `level`: Heading hierarchy (H1, H2, H3, H4, H5, H6) based on font size and patterns
+* `text`: Clean heading text with proper formatting and whitespace handling
+* `page`: 1-based page number reference for precise navigation
 
 ---
 
-## 📃 QUICK START
+## ⚡ QUICK START
 
-### Prerequisites
+**Prerequisites:**
 
 * Docker Desktop
 * Git
 * 512MB+ free disk
 
-### Setup & Build
+**Setup & Build:**
 
 ```bash
 git clone https://github.com/abhiniveshmitra/service-1a.git
@@ -89,99 +153,86 @@ cd service-1a
 docker build --platform=linux/amd64 -t adobe-service-1a .
 ```
 
-### Run Service
+**Run Service 1A:**
 
 ```bash
-docker run --rm \
-  -v "$(pwd)/app/input:/app/input:ro" \
-  -v "$(pwd)/app/output:/app/output" \
-  --network none \
-  adobe-service-1a
+# Using PowerShell (Windows)
+docker run --rm -v "${PWD}/app/input:/app/input:ro" -v "${PWD}/app/output:/app/output" --network none adobe-service-1a
+
+# Using Bash (Linux/Mac)
+docker run --rm -v "$(pwd)/app/input:/app/input:ro" -v "$(pwd)/app/output:/app/output" --network none adobe-service-1a
 ```
 
-### Docker Compose
+**Docker Compose Alternative:**
 
 ```bash
 docker-compose up
 ```
 
+**Expected Results:**
+
+* Each PDF in app/input/ generates corresponding JSON in app/output/
+* Processing logs show extraction progress and statistics
+* Schema validation confirms hackathon compliance
+
 ---
 
-## 📊 PROCESSING PIPELINE
+## 🔄 PROCESSING PIPELINE
 
-1. **PDF Discovery**: Reads `/app/input/`
-2. **Text Extraction**: Pulls font + layout metadata
-3. **Title Detection**: Identifies top heading on first page
-4. **Heading Scoring**:
+1. PDF Discovery: Scans app/input/ directory for PDF files
+2. Batch Processing: Processes each PDF independently with error handling
+3. Text Extraction: Extracts text blocks with font size, style, and position metadata
+4. Title Detection: Identifies document title from first page using font analysis
+5. Multi-Factor Heading Scoring:
 
-   * Font size, bold, numbered sections, etc.
-5. **Hierarchy Assignment**: Labels as H1-H6
-6. **JSON Serialization**: Outputs to `/app/output/`
-7. **Schema Validation**: Confirms format compliance
+   * Font Size Analysis: Compares heading size to body text (35% weight)
+   * Formatting Detection: Bold, italic, underline flags (25% weight)
+   * Pattern Matching: Numbered sections, Roman numerals, bullet points (25% weight)
+   * Vocabulary Analysis: Heading-specific keywords and phrases (10% weight)
+   * Positional Heuristics: Left alignment, whitespace, paragraph breaks (5% weight)
+6. Hierarchy Assignment: Maps scores to H1-H6 levels using dynamic thresholds
+7. JSON Generation: Creates schema-compliant output with validation
+8. Error Handling: Logs failures, continues processing remaining files
 
 ---
 
 ## 🧠 ALGORITHM DETAILS
 
-**Heading Scoring Breakdown:**
-
-* Font Size Ratio: 35%
-* Formatting Flags: 25%
-* Pattern Matching: 25%
-* Vocabulary Detection: 10%
-* Positional Hints: 5%
-
-**Level Assignment Heuristics:**
-
-* H1: ≥ 1.6x base size
-* H2: ≥ 1.4x
-* H3: ≥ 1.2x
-* Numbering: `1.` → H1, `1.1` → H2, etc.
+* **Font Size Analysis (35%):** Ratio vs body text; H1: ≥1.6x, H2: ≥1.4x, H3: ≥1.2x, H4–H6: <1.2x
+* **Formatting Analysis (25%):** Bold (+0.3), Italic (+0.15), Underline (+0.1), Font family change (+0.2)
+* **Pattern Matching (25%):** Numbered (1., 1.1), Roman numerals (I.), alphabetic (A.), bullet/dash
+* **Vocabulary Detection (10%):** Keywords: Chapter, Section, Introduction, etc.
+* **Positional Analysis (5%):** Left alignment, whitespace, paragraph start
+* **Hierarchy Assignment:** Dynamic thresholds adapt to structure and density
 
 ---
 
-## 🌟 COMPLIANCE WITH HACKATHON RULES
+## 🌟 PERFORMANCE METRICS
 
-| Constraint                 | Met? |
-| -------------------------- | ---- |
-| ≤ 10s per 50-page PDF      | ✅    |
-| Max 50 pages per file      | ✅    |
-| ≤ 512MB memory use         | ✅    |
-| CPU-only, no GPU           | ✅    |
-| --network none compliant   | ✅    |
-| Output schema validation   | ✅    |
-| Multi-PDF batch processing | ✅    |
+* **Speed:** 2–5s per PDF (50-page limit)
+* **Memory:** <512MB peak
+* **Accuracy:** Multi-factor algorithm for superior heading detection
+* **Resilience:** Fault-tolerant batch processing
+* **Efficiency:** Batch mode, shared resource optimization
 
 ---
 
-## 📊 PERFORMANCE METRICS
+## ✅ ADOBE HACKATHON COMPLIANCE CHECKLIST
 
-* Speed: 2–5s/PDF
-* RAM: <512MB
-* Compliance: 100% validation
-* Robustness: Fault-tolerant
-
----
-
-## ✅ SUBMISSION CHECKLIST
-
-* [x] Docker build & run on AMD64
-* [x] ≤10s/50pg PDF
-* [x] No network/GPU
-* [x] Schema-compliant JSON
-* [x] Batch & error handling
-* [x] Health check included
-
----
-
-## 🔧 TECH SPECS
-
-* Language: Python 3.10
-* Parser: PyMuPDF
-* Output: JSON (strict schema)
-* Container: Docker
-* RAM: ≤512MB
-* Size: <200MB footprint
+* [x] Processing time ≤10s/50-page PDF (Actual: 2–5s)
+* [x] Page limit ≤50 enforced
+* [x] Memory ≤512MB
+* [x] CPU-only (no GPU)
+* [x] Network isolation --network none
+* [x] Docker linux/amd64 platform
+* [x] Batch processing with error handling
+* [x] PDF outline extraction (hierarchical)
+* [x] Heading level detection (H1–H6)
+* [x] Page number refs (1-based)
+* [x] JSON schema compliance
+* [x] Title extraction
+* [x] filename.json output (not filename\_outline.json)
+* [x] Multi-PDF batch
 
 ---
 
@@ -193,6 +244,6 @@ docker-compose up
 
 ---
 
-## 🚀 FINAL REMARK
+## 🚀 FINAL STATUS
 
-This project delivers a fast, accurate, and schema-compliant Service 1A implementation, tailored for Adobe’s hackathon challenge and extensible for downstream analysis.
+This Service 1A implementation delivers advanced, robust, and fully compliant PDF outline extraction for Adobe India Hackathon 2025, enabling seamless downstream document intelligence.
