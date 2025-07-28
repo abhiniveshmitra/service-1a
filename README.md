@@ -1,125 +1,42 @@
 # Adobe India Hackathon 2025 – Service 1A: PDF Outline Extraction
 
-## 🚀 Overview
+## 🚀 OVERVIEW
 
-This repository is our official submission for Adobe India Hackathon 2025 Service 1A, under the theme "Connecting the Dots." It contains a robust, production-ready pipeline to perform automatic outline extraction from PDFs, with structured JSON output.
-
-### ✅ What It Does
-
-* Transforms static PDF files into structured, hierarchical outlines.
-* Detects document title and headings (H1-H3) with page numbers.
-* Outputs a valid JSON file compliant with the Adobe-specified schema.
-
-### 🔹 Key Features
-
-* **Smart Heading Detection:** Combines font analysis, regex patterns, layout heuristics.
-* **Fast & Lightweight:** Processes PDFs (up to 50 pages) in under 10 seconds on CPU.
-* **Fully Dockerized:** Works cross-platform; compatible with linux/amd64 per hackathon constraints.
-* **Offline and CPU-Only:** No internet required; model size under 200MB.
-* **Schema-Compliant Output:** Validated via automated JSON validation module.
-* **Graceful Failures:** Continues batch processing even if some PDFs fail.
+Official submission for Service 1A of Adobe India Hackathon 2025. This system extracts hierarchical outlines from PDF documents, identifying titles and H1–H6 headings, and outputs a schema-compliant JSON.
 
 ---
 
-## 📂 Where to Place PDFs
+## 📄 WHAT IT DOES
 
-Place test PDFs into:
-
-```
-/app/input/
-```
-
-The JSON outputs will be saved to:
-
-```
-/app/output/
-```
-
-Each output will be named `[filename]_outline.json`.
+* Extracts structured outlines from static PDFs
+* Detects heading levels (H1-H6) and their page numbers
+* Transforms results into JSON format for downstream use
+* Processes files under 10s with CPU-only execution
+* Fully offline and self-contained
 
 ---
 
-## 📋 Output Format
+## 🔹 KEY FEATURES
 
-```json
-{
-  "title": "Document Title from PDF",
-  "outline": [
-    {"level": "H1", "text": "Chapter 1: Introduction", "page": 1},
-    {"level": "H2", "text": "1.1 Background", "page": 2},
-    {"level": "H3", "text": "1.1.1 Methodology", "page": 3}
-  ]
-}
-```
+* **Multi-Factor Heading Detection**: Font size ratios, formatting flags, layout, regex
+* **Hierarchy Recognition**: Auto H1-H6 assignment via font and numbering
+* **Fast Execution**: 2–5s typical per PDF (50-page max)
+* **Schema Compliance**: 100% JSON validation
+* **Error Resilience**: Skips failing files, continues batch
+* **Dockerized**: linux/amd64 container-ready
 
 ---
 
-## 🔄 Processing Pipeline
-
-1. **PDF Ingestor** → Reads files from `/app/input`
-2. **Parser & Chunker** → Uses PyMuPDF to extract text + layout
-3. **Heading Detector** → Analyzes font size, styles, spatial patterns, numbering
-4. **JSON Generator** → Serializes clean outline into schema-compliant format in `/app/output`
-5. **Validator** → Ensures JSON output is correct per schema
-
----
-
-## 🗃️ Quick Start (Docker)
-
-### Prerequisites
-
-* Docker Desktop (with WSL2 if on Windows)
-* Git (for cloning repo)
-
-### Setup
-
-```bash
-git clone https://github.com/abhiniveshmitra/service-1a.git
-cd service1a
-docker build --platform=linux/amd64 -t adobe-service-1a .
-```
-
-### Run with Docker Compose (Recommended)
-
-```bash
-docker-compose up
-```
-
-### Or Run with Docker CLI
-
-```bash
-docker run --rm --platform=linux/amd64 \
-  -v "${PWD}/app/input:/app/input" \
-  -v "${PWD}/app/output:/app/output" \
-  -e SERVICE=1A \
-  -e ROUND=round1a \
-  adobe-service-1a
-```
-
----
-
-## 🌟 Official Hackathon Compliance
-
-* ✅ Input PDF up to 50 pages
-* ✅ CPU-only, offline processing
-* ✅ Max runtime: under 10 seconds per PDF
-* ✅ No GPU/Internet dependencies
-* ✅ Output JSON matches provided schema
-* ✅ Dockerfile specifies `--platform=linux/amd64`
-* ✅ Model size: lightweight (< 200MB)
-
----
-
-## 📁 Project Structure
+## 📁 DIRECTORY STRUCTURE
 
 ```
 service-1a/
 ├── app/
-│   ├── input/                # Input PDFs here
-│   ├── output/               # Output JSONs
-│   ├── services/round1a/     # Core processing logic
-│   ├── utils/                # Logging, validation helpers
-│   └── config/               # Optional runtime configs
+│   ├── config/            # Service config
+│   ├── input/             # Input PDFs
+│   ├── output/            # Output JSONs
+│   ├── services/round1a/  # Core logic
+│   └── utils/             # Validation/log helpers
 ├── Dockerfile
 ├── docker-compose.yml
 ├── requirements.txt
@@ -128,103 +45,154 @@ service-1a/
 
 ---
 
-## 🧠 Algorithms Behind the Scenes
+## 🔧 INPUT REQUIREMENTS
 
-* **Heading Detection:**
-
-  * Font size and boldness cues
-  * Regex for section formats (e.g., 1., 1.1.1)
-  * Spatial indentation and distance from top
-* **Title Extraction:**
-
-  * Largest text on page 1, ignoring headers/footers
-* **Structure Detection:**
-
-  * H1-H3 assignment based on scoring heuristics
+* Place `.pdf` files in `/app/input/`
+* ≤ 50 pages per PDF
+* Valid text-based PDFs
+* Naming: Any `.pdf` extension
 
 ---
 
-## ✅ Example Workflow
+## 🔄 OUTPUT FORMAT (filename.json)
+
+```json
+{
+  "title": "Document Title Extracted from PDF",
+  "outline": [
+    {"level": "H1", "text": "Chapter 1: Introduction", "page": 1},
+    {"level": "H2", "text": "1.1 Background and Context", "page": 2},
+    {"level": "H3", "text": "1.1.1 Problem Statement", "page": 3}
+  ]
+}
+```
+
+* `title`: First-page extracted title
+* `outline`: Hierarchical heading structure
+* `page`: 1-based indexing
+
+---
+
+## 📃 QUICK START
+
+### Prerequisites
+
+* Docker Desktop
+* Git
+* 512MB+ free disk
+
+### Setup & Build
 
 ```bash
-# Step 1: Add your PDFs
-cp your-pdf.pdf app/input/
+git clone https://github.com/abhiniveshmitra/service-1a.git
+cd service-1a
+docker build --platform=linux/amd64 -t adobe-service-1a .
+```
 
-# Step 2: Run
+### Run Service
+
+```bash
+docker run --rm \
+  -v "$(pwd)/app/input:/app/input:ro" \
+  -v "$(pwd)/app/output:/app/output" \
+  --network none \
+  adobe-service-1a
+```
+
+### Docker Compose
+
+```bash
 docker-compose up
-
-# Step 3: Check output
-cat app/output/your-pdf_outline.json
 ```
 
 ---
 
-## 🪨 Health Check & Validation
+## 📊 PROCESSING PIPELINE
 
-### Health Check:
+1. **PDF Discovery**: Reads `/app/input/`
+2. **Text Extraction**: Pulls font + layout metadata
+3. **Title Detection**: Identifies top heading on first page
+4. **Heading Scoring**:
 
-```bash
-docker run --rm adobe-service-1a python -c "print('Service 1A: Health check passed')"
-```
-
-### JSON Schema Validation:
-
-```bash
-docker run --rm -v "${PWD}/app:/app" adobe-service-1a \
-  python -c "from utils.json_validator import JSONValidator; \
-  JSONValidator().validate_batch_outputs('/app/output')"
-```
+   * Font size, bold, numbered sections, etc.
+5. **Hierarchy Assignment**: Labels as H1-H6
+6. **JSON Serialization**: Outputs to `/app/output/`
+7. **Schema Validation**: Confirms format compliance
 
 ---
 
-## 🏆 Submission Checklist
+## 🧠 ALGORITHM DETAILS
 
-* [x] Working Docker image (linux/amd64)
-* [x] Output in valid schema
-* [x] Handles up to 50-page PDFs in <10s
-* [x] Offline, CPU-only
-* [x] Title + H1, H2, H3 extraction
-* [x] Batch processing & error handling
-* [x] Docker instructions and README
+**Heading Scoring Breakdown:**
 
----
+* Font Size Ratio: 35%
+* Formatting Flags: 25%
+* Pattern Matching: 25%
+* Vocabulary Detection: 10%
+* Positional Hints: 5%
 
-## 📊 Performance Summary
+**Level Assignment Heuristics:**
 
-* **Speed:** 2–5 seconds per 50-page PDF
-* **Memory:** <512MB usage
-* **Heading Precision:** High (validated)
-* **Failure Recovery:** Skips failed files, logs issues
+* H1: ≥ 1.6x base size
+* H2: ≥ 1.4x
+* H3: ≥ 1.2x
+* Numbering: `1.` → H1, `1.1` → H2, etc.
 
 ---
 
-## 🔧 Config Options (ENV Vars)
+## 🌟 COMPLIANCE WITH HACKATHON RULES
 
-* `SERVICE=1A` → Service identifier
-* `ROUND=round1a` → Challenge phase
-* `LOG_LEVEL=INFO` → Logging verbosity
-* `PYTHONPATH=/app` → Python path setup
-
----
-
-## 📦 Tech Stack
-
-* Python 3.11
-* PyMuPDF (PDF parsing)
-* Docker (with AMD64 support)
-* JSONSchema (validation)
+| Constraint                 | Met? |
+| -------------------------- | ---- |
+| ≤ 10s per 50-page PDF      | ✅    |
+| Max 50 pages per file      | ✅    |
+| ≤ 512MB memory use         | ✅    |
+| CPU-only, no GPU           | ✅    |
+| --network none compliant   | ✅    |
+| Output schema validation   | ✅    |
+| Multi-PDF batch processing | ✅    |
 
 ---
 
-## 🔗 Useful Links
+## 📊 PERFORMANCE METRICS
 
-* Hackathon Spec: [Adobe Challenge Doc](https://github.com/jhaaj08/Adobe-India-Hackathon25)
-* Repo: [https://github.com/abhiniveshmitra/Rishit-Abhinivesh-Paarth](https://github.com/abhiniveshmitra/Rishit-Abhinivesh-Paarth)
+* Speed: 2–5s/PDF
+* RAM: <512MB
+* Compliance: 100% validation
+* Robustness: Fault-tolerant
 
 ---
 
-## 🌟 Bonus Notes
+## ✅ SUBMISSION CHECKLIST
 
-* Multilingual support considered for future expansion.
-* Modular design allows reuse in 1B pipeline.
-* Easily extensible to H4-H6 if needed.
+* [x] Docker build & run on AMD64
+* [x] ≤10s/50pg PDF
+* [x] No network/GPU
+* [x] Schema-compliant JSON
+* [x] Batch & error handling
+* [x] Health check included
+
+---
+
+## 🔧 TECH SPECS
+
+* Language: Python 3.10
+* Parser: PyMuPDF
+* Output: JSON (strict schema)
+* Container: Docker
+* RAM: ≤512MB
+* Size: <200MB footprint
+
+---
+
+## 🔗 RESOURCES
+
+* Repo: [https://github.com/abhiniveshmitra/service-1a](https://github.com/abhiniveshmitra/service-1a)
+* Support: GitHub Issues tab
+* Docs: Inline code comments + test samples
+
+---
+
+## 🚀 FINAL REMARK
+
+This project delivers a fast, accurate, and schema-compliant Service 1A implementation, tailored for Adobe’s hackathon challenge and extensible for downstream analysis.
