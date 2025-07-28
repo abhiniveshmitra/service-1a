@@ -1,4 +1,4 @@
-﻿"""
+"""
 Service 1A Configuration Settings
 PDF Outline Extraction Service
 """
@@ -8,7 +8,7 @@ from typing import Optional
 from pathlib import Path
 
 class Settings:
-    def __init__(self):
+    def _init_(self):
         # Service identification
         self.service: str = os.getenv('SERVICE', '1A')
         self.round: str = os.getenv('ROUND', 'round1a')
@@ -73,4 +73,4 @@ class Settings:
     def get_output_filename(self, pdf_filename: str) -> str:
         """Generate output filename for a PDF"""
         pdf_name = Path(pdf_filename).stem
-        return f"{pdf_name}_outline.json"
+        return f"{pdf_name}.json"
