@@ -74,7 +74,7 @@ Each output will be named `[filename]_outline.json`.
 ### Setup
 
 ```bash
-git clone https://github.com/abhiniveshmitra/Rishit-Abhinivesh-Paarth.git
+git clone https://github.com/abhiniveshmitra/service-1a.git
 cd service1a
 docker build --platform=linux/amd64 -t adobe-service-1a .
 ```
