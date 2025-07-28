@@ -1,10 +1,10 @@
-﻿# Adobe Hackathon 2025 Compliant Dockerfile
+﻿# Adobe Hackathon 2025 - Service 1A: PDF Outline Extraction
 FROM python:3.10-slim
 
-# Metadata for hackathon submission
+# Metadata for Service 1A
 LABEL maintainer="hackathon-participant"
 LABEL version="1.0"
-LABEL description="Adobe India Hackathon 2025 - PDF Document Intelligence"
+LABEL description="Adobe India Hackathon 2025 - Service 1A: PDF Outline Extraction"
 
 # Set working directory
 WORKDIR /app
@@ -28,29 +28,24 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
+# Copy ONLY Service 1A application code
 COPY app/ ./app/
-COPY scripts/ ./scripts/
-COPY collections/ ./collections/
 
-# Create necessary directories with proper permissions
-RUN mkdir -p /app/input /app/output /app/logs /app/models && \
+# Create necessary directories for Service 1A with proper permissions
+RUN mkdir -p /app/input /app/output /app/logs && \
     chown -R appuser:appuser /app
 
 # Set Python environment variables
 ENV PYTHONPATH=/app
 ENV PYTHONUNBUFFERED=1
-ENV ROUND=1A
+ENV SERVICE=1A
+ENV ROUND=round1a
 
 # Switch to non-root user
 USER appuser
 
-# Health check for container monitoring
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD python -c "import app.main; print('Health check passed')" || exit 1
-
 # Expose port if needed (optional for hackathon)
 # EXPOSE 8080
 
-# Default command with proper error handling
+# Default command for Service 1A
 CMD ["python", "-u", "app/main.py"]

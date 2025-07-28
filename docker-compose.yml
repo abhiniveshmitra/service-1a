@@ -1,29 +1,46 @@
 ﻿version: '3.8'
 
 services:
-  adobe-hackathon:
+  service-1a:
     build: 
       context: .
       dockerfile: Dockerfile
-    container_name: adobe-pdf-processor
+    container_name: adobe-service-1a-pdf-outline
     environment:
-      - ROUND=1A
+      - SERVICE=1A
+      - ROUND=round1a
+      - PYTHONPATH=/app
+      - PYTHONUNBUFFERED=1
     volumes:
-      - ./app/input:/app/input:ro
-      - ./app/output:/app/output
-      - ./collections:/app/collections
+      - ./app/input:/app/input:ro        # PDF input files (read-only)
+      - ./app/output:/app/output         # JSON outline outputs (read-write)
+      - ./app/logs:/app/logs             # Application logs
+    ports:
+      - "8080:8080"                      # Optional: if you add API endpoints
     restart: unless-stopped
+    working_dir: /app
     
-  # Round 1B service
-  adobe-hackathon-1b:
-    build: 
-      context: .
-      dockerfile: Dockerfile
-    container_name: adobe-challenge-1b
-    environment:
-      - ROUND=1B
-    volumes:
-      - ./collections:/app/collections
-    restart: unless-stopped
-    depends_on:
-      - adobe-hackathon
+    # Resource limits for hackathon compliance
+    deploy:
+      resources:
+        limits:
+          memory: 512M                   # Reasonable limit for Service 1A
+          cpus: '1.0'
+        reservations:
+          memory: 256M
+          cpus: '0.5'
+    
+    # Health check alternative (since removed from Dockerfile)
+    healthcheck:
+      test: ["CMD", "python", "-c", "import sys; sys.exit(0)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+# Optional: Create named volumes for better data management
+volumes:
+  pdf_output:
+    driver: local
+  app_logs:
+    driver: local

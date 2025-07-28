@@ -33,3 +33,15 @@ temp/
 *.tar
 *.zip
 *.gz
+
+# Service 1B artifacts (no longer needed)
+collections/
+scripts/
+app/models/round1b/
+app/services/round1b/
+
+# Keep Service 1A models accessible
+# app/models/round1a/  # Comment out - we want these in container
+
+# Docker volumes
+.docker/

@@ -31,9 +31,30 @@ tmp/
 temp/
 .pytest_cache/
 
-# Large Model Files (if they exceed GitHub's 100MB limit)
-# Uncomment if your models are too large
-# app/models/
+# Service 1A - PDF Processing Outputs (if large)
+app/output/*.json
+app/input/*.pdf
 
-# Docker volumes (if any)
+# Service 1B artifacts (clean up - these don't exist anymore)
+collections/
+scripts/
+app/models/round1b/
+app/services/round1b/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Large PDF test files (keep repo lightweight)
+*.pdf
+!app/input/sample.pdf  # Keep one sample if needed
+
+# Model weights (if you add any for Service 1A)
+*.bin
+*.safetensors
+*.onnx
+
+# Docker
 .docker/
+docker-compose.override.yml

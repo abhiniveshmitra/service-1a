@@ -1,31 +1,45 @@
-﻿# PyTorch - CPU version compatible with sentence-transformers
---index-url https://download.pytorch.org/whl/cpu
-torch>=2.1.0
-torchvision>=0.16.0
-torchaudio>=2.1.0
-
-# PDF Processing
+﻿# PDF Processing - Core libraries for Service 1A
 PyMuPDF>=1.23.0,<1.24.0
 pdfplumber>=0.9.0,<1.0.0
+pypdf>=3.0.0,<4.0.0
 
-# NLP & Embeddings - Compatible versions
-sentence-transformers>=2.4.0
-transformers>=4.33.0
-huggingface_hub>=0.20.0
-numpy>=1.24.0,<1.25.0
-scipy>=1.11.0,<1.12.0
+# Basic Text Processing for heading detection
+nltk>=3.8.0,<3.9.0
+spacy>=3.7.0,<3.8.0
+regex>=2023.6.0,<2024.0.0
 
-# Similarity Search
-faiss-cpu>=1.7.4,<1.8.0
+# Data Handling
+numpy>=1.24.0,<1.26.0
+pandas>=2.0.0,<2.2.0
 
-# Utilities
+# JSON & File Operations
+jsonschema>=4.17.0,<4.20.0
+pydantic>=2.3.0,<2.5.0
+pathlib2>=2.3.0,<2.4.0
+
+# HTTP & API Framework (if needed)
 requests>=2.31.0,<2.32.0
-pydantic>=2.3.0,<2.4.0
+fastapi>=0.100.0,<0.105.0
+uvicorn>=0.23.0,<0.24.0
+
+# Logging & Monitoring
 python-json-logger>=2.0.0,<2.1.0
+structlog>=23.1.0,<23.2.0
+psutil>=5.9.0,<6.0.0
+
+# Text Pattern Matching & RegEx
+python-dateutil>=2.8.0,<2.9.0
+fuzzywuzzy>=0.18.0,<0.19.0
 
 # Development & Testing
 pytest>=7.4.0,<7.5.0
 black>=23.7.0,<23.8.0
 flake8>=6.0.0,<6.1.0
-psutil>=5.9.0,<6.0.0
 pytest-mock>=3.11.0,<3.12.0
+
+# Environment & Config
+python-dotenv>=1.0.0,<1.1.0
+click>=8.1.0,<8.2.0
+
+# Error Handling & Validation
+marshmallow>=3.20.0,<3.21.0
